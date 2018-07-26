@@ -22,9 +22,13 @@ public class PathSolver {
             path.isFound = true;
             return true;
         }
-        return !move(a.east, b, path.add(Direction.EAST))
+        boolean end = !move(a.east, b, path.add(Direction.EAST))
                  && !move(a.south, b, path.add(Direction.SOUTH))
                  && !move(a.west, b, path.add(Direction.WEST))
                  && !move(a.north, b, path.add(Direction.NORTH));
+        if(end) {
+            path.removeLast();
+        }
+        return false;
     }
 }
